@@ -1,18 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
+const inputStyle = {
+  width: "80%",
+  maxWidth: 300,
+  height: 50,
+  fontSize: 15,
+  margin: 10,
+};
 function App() {
-    return (
-        <div className='App'>
-            <header className='App-header'>
-                <img src={logo} className='App-logo' alt='logo' />
-                <h1>Hello from V2</h1>
+  const [baseUrl, setBaseUrl] = useState("");
+  const [path, setPath] = useState("");
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Deep linking test</h1>
+        <input
+          placeholder="base url"
+          type="text"
+          value={baseUrl}
+          onChange={({ target: { value } }) => setBaseUrl(value)}
+          style={inputStyle}
+        />
 
-                <a href='exp://192.168.1.134:19000/--/'>Deeplinking test</a>
-            </header>
-        </div>
-    );
+        <input
+          placeholder="path"
+          type="text"
+          value={path}
+          onChange={({ target: { value } }) => setPath(value)}
+          style={inputStyle}
+        />
+        <a style={{ color: "#FFF", padding: 20 }} href={`${baseUrl}${path}`}>
+          Deeplinking to: {baseUrl}
+          {path}
+        </a>
+      </header>
+    </div>
+  );
 }
 
 export default App;
